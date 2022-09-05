@@ -7,29 +7,32 @@ const main = async () => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    //await deleteListingsScrapedBeforeDate(client, new Date("2022-05-13"));
+
+    await deleteListingsScrapedBeforeDate(client, new Date("2022-05-13"));
 
     await findAllListings(client);
-    //await deleteListingByName(client, "Rock 'n Role");
 
-    //await updateListingsToHavePropertyType(client);
-    /*  await upsertListingByName(client, "Rock 'n Role", {
+    await deleteListingByName(client, "Rock 'n Role");
+
+    await updateListingsToHavePropertyType(client);
+
+    await upsertListingByName(client, "Rock 'n Role", {
       name: "Rock 'n Role",
       bedrooms: 3,
       bathrooms: 1,
-    }); */
+    });
 
-    //await updateListingByName(client, "Lake House", { bedrooms: 15, beds: 5 });
+    await updateListingByName(client, "Lake House", { bedrooms: 15, beds: 5 });
 
-    /*  await findListingsByRoomCapacity(client, {
+    await findListingsByRoomCapacity(client, {
       minBedroomAmount: 3,
       minBathroomAmount: 2,
       maxResultAmount: 5,
-    }); */
+    });
 
-    // await findListingByName(client, "Lake House");
+    await findListingByName(client, "Lake House");
 
-    /* await createListings(client, [
+    await createListings(client, [
       {
         name: "Lake House",
         bedrooms: 5,
@@ -55,17 +58,18 @@ const main = async () => {
         isAvailable: true,
         extras: ["swimming pool", "game room", "cinema room"],
       },
-    ]); */
-    /* await createListing(client, {
+    ]);
+
+    await createListing(client, {
       name: "Lovely Loft",
       bedrooms: 2,
       summary: "A charming loft in Paris.",
       bathrooms: 1,
       price: "40 euro",
       isAvailable: true,
-    }); */
+    });
 
-    //await listDatabases(client);
+    await listDatabases(client);
   } catch (error) {
     console.error(error);
   } finally {
@@ -81,6 +85,7 @@ const listDatabases = async (client) => {
   console.log("Databases:");
   databasesList.databases.forEach((db) => console.log(`--${db.name}`));
 };
+
 //Create a new document into a collection
 const createListing = async (client, newListing) => {
   const result = await client
