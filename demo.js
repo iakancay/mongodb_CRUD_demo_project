@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 //Connection to ATLAS mongodb
 const main = async () => {
   const uri =
-    "mongodb+srv://hyfuser:hyfpassword@cluster0.6enaegs.mongodb.net/?retryWrites=true&w=majority";
+    "mongodb+srv://hyfuser:<password>@cluster0.6enaegs.mongodb.net/?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
   try {
     await client.connect();
